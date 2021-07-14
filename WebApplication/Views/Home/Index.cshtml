@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Book>
+
+@{
+    ViewData["Title"] = "Grid";
+}
+@{
+    var b = new Book();
+}
+<div class="row">
+    <div class="col-8"><h1>Книжный магазин</h1></div>
+    <div class="col">
+        <div class="row">
+            <i class="col far fa-folder-open fa-5x"></i>
+            <i class="col far fa-save fa-5x"></i>
+            <i class="col far fa-file-code fa-5x"></i>
+        </div>
+    </div>
+    
+</div>
+<br/>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th scope="col">
+           Actions
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model is not null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    <button ><i class="far fa-edit" aria-label="edit"></i></button>
+                    <button ><i class="fas fa-trash" aria-label="delete"></i></button>
+                </td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
