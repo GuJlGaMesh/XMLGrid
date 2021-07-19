@@ -12,13 +12,13 @@ using BusinessLogic.Model;
 
 namespace BusinessLogic.Services
 {
+    // Мозги приложения
     public class XmlService : IXmlService
     {
         public string Path { get; set; } = Directory.GetCurrentDirectory() + @"\wwwroot\Downloads\";
         public IEnumerable<Book> Read(XDocument xml)
         {
             var books = new List<Book>();
-            //var id = 1;
             foreach (XElement book in xml.Element("bookstore").Elements("book"))
             {
                 XAttribute category = book.Attribute("category");
@@ -44,7 +44,6 @@ namespace BusinessLogic.Services
                         Language = language?.Value
                     };
                     books.Add(b);
-                   // id++;
                 }
             }
             return books;
@@ -101,18 +100,27 @@ namespace BusinessLogic.Services
                 transform.Transform(reader, null, writer);
             }
 
-            using (var stream = new FileStream(Path + "report.html", FileMode.OpenOrCreate))
+            if (!System.IO.File.Exists(Path + "report.html"))
             {
-                var buffer = Encoding.Default.GetBytes(writer.ToString());
-                stream.Write(buffer, 0, buffer.Length);
+                using (var stream = new FileStream(Path + "report.html", FileMode.CreateNew))
+                {
+                    var buffer = Encoding.Default.GetBytes(writer.ToString());
+                    stream.Write(buffer, 0, buffer.Length);
+                }
+            }
+            else
+            {
+                using (var stream = new FileStream(Path + "report.html", FileMode.Truncate))
+                {
+                    var buffer = Encoding.Default.GetBytes(writer.ToString());
+                    stream.Write(buffer, 0, buffer.Length);
+                }
             }
         }
 
-
-
-// колхоз
-
-        public void WriteToXmlFile(IEnumerable<Book> books)
+        #region Колхоз, но зато работает
+        
+        public void WriteToXMLFile(IEnumerable<Book> books)
         {
             RemoveFile("serBooks.xml");
             var serBooks = books.Select(x => new SerializableBook(x)).ToArray();
@@ -125,9 +133,11 @@ namespace BusinessLogic.Services
         }
         public XDocument WriteToXML(IEnumerable<Book> books)
         {
-            WriteToXmlFile(books);
+            WriteToXMLFile(books);
             return XDocument.Load(Path + "serBooks.xml");
-        }
+        }      
+        #endregion
+        
 
         private void RemoveFile(string name)
         {

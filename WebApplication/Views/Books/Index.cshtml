@@ -4,6 +4,25 @@
     ViewData["Title"] = "Index";
 }
 
+<p>
+  <a class="btn btn-danger" data-toggle="collapse" href="#collapsing" role="button" aria-expanded="false" aria-controls="collapseExample">
+    ВАЖНО
+  </a>
+</p>
+<div class="collapse" id="collapsing">
+  <div class="card card-body">
+      Авторов вводить нужно через ";" То есть: Лев Николаевич Толстой; Александр Сергеевич Пушкин;<br>
+      Это единтсвенная "фича" при работе с данными. <br>
+      Это сделано в целях упрощения таблицы в базе данных и упрощения работы с динамически генерируемыми инпутами (а точнее её отсутствие).<br>
+      <br>
+      Ниже я называю это фичей, потому что воспринял задание так: свежий запуск приложения => получаем пустую таблицу и возможность загрузить файл.<br>
+      <br>
+      "Фича" при работе с загруженным xml файлом - нужно руками чистить таблицу. Почему см. комментарии в BooksController.
+      <br>
+      Загрузить ещё данные - возможность объединить несколько xml файлов в один.
+      </div>
+</div>
+
 <h1>Книжный магазин</h1>
 <div class="row">
     @if (Model.Count() == 0)
@@ -14,6 +33,9 @@
     }
     else
     {
+        <div class="col">
+            <a class="btn btn-info" asp-action="LoadXml">Загрузить ещё данные</a>
+        </div>
         <div class="col">
             <a class="btn btn-primary" asp-action="Create">Создать новую позицию</a>
         </div>

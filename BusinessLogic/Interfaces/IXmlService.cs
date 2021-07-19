@@ -12,6 +12,8 @@ namespace BusinessLogic.Interfaces
         
         public XDocument WriteToXML(IEnumerable<Book> books);
         
+        public void WriteToXMLFile(IEnumerable<Book> books);
+        
  
     }
 }

@@ -33,27 +33,32 @@ namespace WebApplication.Controllers
             //ClearContext();
             _xmlService = xmlService;
         }
-
+        
+        // Нужно для очистки контекста базы данных
+        // к своему стыду, не нашёл нормального способа очистки таблицы перед стартом приложения.
+        // Если оставить вызов этого метода при каждом запуске приложения, то почему-то данные перестают сохраняться
+        // в контексте, а куда-то исчезают после того как метод LoadXml отарбатывает.
+        // Поэтому запуск, в котором я хочу чистую таблицу, я расскоментирую вызов метода, запускаю, потом снова коммнтирую
         private void ClearContext()
         {
             _context.Books.RemoveRange(_context.Books.ToList());
             _context.SaveChanges();
         }
         
-        // GET: Books
+        
         [HttpGet]
         public IActionResult Index()
         {
             return View(_context.Books.ToList());
         }
 
-        //GET: Books
+        
         [HttpGet]
         public IActionResult DownLoadXML()
         {
             var contentPath = Path.Combine(_environment.WebRootPath, "Downloads");
             
-            var file = _xmlService.WriteToXML(_context.Books.ToList());
+            _xmlService.WriteToXMLFile(_context.Books.ToList());
             var filePath = Path.Combine(contentPath, "serBooks.xml");
             if (!System.IO.File.Exists(filePath))
                 return NotFound();

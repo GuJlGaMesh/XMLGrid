@@ -1,11 +1,5 @@
 <?xml version="1.0"?>
 <bookstore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <book category="cooking">
-    <title lang="en">Everyday Italian</title>
-    <author>Giada De Laurentiis</author>
-    <price>30.00</price>
-    <year>2005</year>
-  </book>
   <book category="children">
     <title lang="en">Harry Potter</title>
     <author>J K. Rowling</author>
@@ -18,10 +12,60 @@
     <price>123</price>
     <year>123</year>
   </book>
-  <book category="123" cover="fdsfs">
-    <title lang="fdhtj">123</title>
-    <author>sdfdf</author>
-    <price>dffd</price>
-    <year>fhfthj</year>
+  <book category="cooking">
+    <title lang="en">Everyday Italian</title>
+    <author>Giada De Laurentiis</author>
+    <price>30.00</price>
+    <year>2005</year>
+  </book>
+  <book category="children">
+    <title lang="en">Harry Potter</title>
+    <author>J K. Rowling</author>
+    <price>29.99</price>
+    <year>2005</year>
+  </book>
+  <book category="web">
+    <title lang="en">XQuery Kick Start</title>
+    <author>James McGovern</author>
+    <author>Per Bothner</author>
+    <author>Kurt Cagle</author>
+    <author>James Linn</author>
+    <author>Vaidyanathan Nagarajan</author>
+    <price>49.99</price>
+    <year>2003</year>
+  </book>
+  <book category="web" cover="paperback">
+    <title lang="en">Learning XML</title>
+    <author>Erik T. Ray</author>
+    <price>39.95</price>
+    <year>2003</year>
+  </book>
+  <book category="cooking">
+    <title lang="en">Everyday Italian</title>
+    <author>Giada De Laurentiis</author>
+    <price>30.00</price>
+    <year>2005</year>
+  </book>
+  <book category="children">
+    <title lang="en">Harry Potter</title>
+    <author>J K. Rowling</author>
+    <price>29.99</price>
+    <year>2005</year>
+  </book>
+  <book category="web">
+    <title lang="en">XQuery Kick Start</title>
+    <author>James McGovern</author>
+    <author>Per Bothner</author>
+    <author>Kurt Cagle</author>
+    <author>James Linn</author>
+    <author>Vaidyanathan Nagarajan</author>
+    <price>49.99</price>
+    <year>2003</year>
+  </book>
+  <book category="web" cover="paperback">
+    <title lang="en">Learning XML</title>
+    <author>Erik T. Ray</author>
+    <price>39.95</price>
+    <year>2003</year>
   </book>
 </bookstore>
