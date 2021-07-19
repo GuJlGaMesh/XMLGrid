@@ -1,16 +1,176 @@
-﻿@model IEnumerable<Book>
+﻿
+@using BusinessLogic.Model
+@model IEnumerable<Book>
 
 @{
     ViewData["Title"] = "Grid";
-}
-@{
     var b = new Book();
 }
+
+@* Upload modal *@
+<div class="modal" tabindex="-1" role="dialog" id="load-xml-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="LoadFile">
+                <div class="modal-header">
+                    <h5 class="modal-title">Загрузить XML</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <input type="file" name="file" class="form-control-file" id="load-xml-file">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Загрузить</button>
+                    <button class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                </div>
+            </form>
+        </div>
+      
+    </div>
+</div>
+
+@* Edit xml item *@
+<div class="modal" tabindex="-2" role="dialog" id="editXmlItem">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="LoadFile">
+                <div class="modal-header">
+                    <h5 class="modal-title">Загрузить XML</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <input type="file" name="file" class="form-control-file" id="load-xml-file">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Загрузить</button>
+                    <button class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                </div>
+            </form>
+        </div>
+      
+    </div>
+</div>
+
+@* Add xml item *@
+<div class="modal" tabindex="-3" role="dialog" id="addXmlItem">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" id="saveXmlForm" class="form-horizontal" asp-action="AddXmlItem">
+                <div class="modal-header">
+                    <h5 class="modal-title">Введите значения нового элемента:</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body">
+                        <div class="control-group">
+                            <div class="control-label">
+                                @Html.DisplayNameFor(model => model.Title)
+                            </div>
+                            <div class="controls">
+                                <input asp-for="@b.Title">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                                @Html.DisplayNameFor(model => model.Author)
+                            </div>
+                            <div class="controls">
+                                <input asp-for="@b.Author">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                                @Html.DisplayNameFor(model => model.Category)
+                            </div>
+                            <div class="controls">
+                                <input asp-for="@b.Category">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                                @Html.DisplayNameFor(model => model.Cover)
+                            </div>
+                            <div class="controls">
+                                <input asp-for="@b.Cover">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                                @Html.DisplayNameFor(model => model.Language)
+                            </div>
+                            <div class="controls">
+                                <input asp-for="@b.Language">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                                @Html.DisplayNameFor(model => model.Price)
+                            </div>
+                            <div class="controls">
+                                <input type="number"  asp-for="@b.Price">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                                @Html.DisplayNameFor(model => model.Year)
+                            </div>
+                            <div class="controls">
+                                <input asp-for="@b.Year">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btnSaveXml" class="btn btn-primary">Сохранить</button>
+                    <button class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                </div>
+            </form>
+        </div>
+      
+    </div>
+</div>
+
+<div id="view-all">
+    @await Html.PartialAsync("_ViewAll", Model)
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="form-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row">
-    <div class="col-8"><h1>Книжный магазин</h1></div>
-    <div class="col">
+    <div class="col-9"><h1>Книжный магазин</h1></div>
+    <div class="col-3">
         <div class="row">
-            <i class="col far fa-folder-open fa-5x"></i>
+           <a type="button" class="btn" data-toggle="modal" data-target="#load-xml-modal"> <i class="col far fa-folder-open fa-5x"> </i> </a>
             <i class="col far fa-save fa-5x"></i>
             <i class="col far fa-file-code fa-5x"></i>
         </div>
@@ -18,33 +178,35 @@
     
 </div>
 <br/>
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th scope="col">
-            @Html.DisplayNameFor(model => model.Author)
-        </th>
-        <th scope="col">
-            @Html.DisplayNameFor(model => model.Year)
-        </th>
-        <th scope="col">
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th scope="col">
-            @Html.DisplayNameFor(model => model.Category)
-        </th>
-        <th scope="col">
-           Actions
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    @if (Model is not null)
-    {
-        foreach (var item in Model)
+
+
+@if (Model is not null)
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th scope="col">
+                Actions
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
         {
             <tr>
                 <td>
@@ -63,11 +225,70 @@
                     @Html.DisplayFor(modelItem => item.Category)
                 </td>
                 <td>
-                    <button ><i class="far fa-edit" aria-label="edit"></i></button>
-                    <button ><i class="fas fa-trash" aria-label="delete"></i></button>
+                    <button ><i class="far fa-edit" title="edit" data-toggle="modal" data-target="#editXmlItem"></i></button>
+                    @* <button><i class="fas fa-trash" title="delete" data-toggle="modal" data-target="#deleteXmlItem" onclick="Confirm(@item.Id)"></i></button> *@
+                    @*            data-path="@Url.Action("Delete", "Home", new { id = @item.Id })"></i></button> *@
+                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash" title="delete" data-toggle="modal" data-target="#deleteXmlItem"></i></a>
                 </td>
             </tr>
         }
-    }
-    </tbody>
-</table>
+        }
+        </tbody>
+    </table>
+    @Html.TextBoxFor(x => b.Id, htmlAttributes: new {id="bookId", type="text"})
+    //<input type="text" id="bookId" asp-for="@b.Id" />
+    <div class="container align-content-center">
+        <a type="button" class="btn" data-toggle="modal" data-target="#addXmlItem"> <i class="far fa-plus-square fa-5x"></i> </a>
+    </div>
+}
+else
+{
+<div class="container">
+    <label class="alert-danger">Загрузите XML файл! </label> <a asp-action="Index" class="btn-link">Я типа ссылка на экшон загрузки файла (дублирую кнопочку вверху)</a>
+</div>   
+}
+
+<script>
+function Confirm(id)
+{
+    $("#bookId").val(id);
+    // $("#deleteXmlItem").modal('show');
+    // $("#deleteXmlItem").modal('hide');
+}
+$(document).ready(
+    function ()
+    {
+        $("#btnSaveXml").click(
+            function ()
+            {
+                var formData = $("#saveXmlForm").serialize();
+                $.ajax(
+                    {
+                    type: "POST",
+                    url:"/Home/AddXmlItem",
+                    data: formData,
+    
+                    });
+            });
+        
+        $("#btnDeleteXml").click(
+
+                            function ()
+                            {
+                                debugger;
+                                var id = $("#bookId").val();
+                                
+                                $.ajax(
+                                {
+                                    type: "GET",
+                                    url: "/Home/Delete",
+                                    data: {id: id},
+                                    success: function (result) { if (result) {
+                                        $("#deleteXmlItem").modal('hide'); 
+                                       }
+                                         else{alert("всё хуйня меня заебало уже блять пиздец...")} }
+                                    
+                            });
+                });
+    });
+</script>

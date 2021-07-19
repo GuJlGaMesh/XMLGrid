@@ -1,0 +1,25 @@
+﻿@model XmlTransfer
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<div class="row">
+    <a asp-action="Index">Назад</a>
+</div>
+<h1>Загрузить XML</h1>
+
+<h4>Вставте XML разметку:</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="POST" asp-controller="Books" asp-action="LoadXml">
+            <div class="form-group">
+                <label class="control-label"></label>
+                <textarea type="text" asp-for="XML" class="form-control mr-auto"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Загрузить!</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<bookstore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <book category="cooking">
+    <title lang="en">Everyday Italian</title>
+    <author>Giada De Laurentiis</author>
+    <price>30.00</price>
+    <year>2005</year>
+  </book>
+  <book category="children">
+    <title lang="en">Harry Potter</title>
+    <author>J K. Rowling</author>
+    <price>29.99</price>
+    <year>2005</year>
+  </book>
+  <book category="123" cover="123">
+    <title lang="123">123</title>
+    <author>123</author>
+    <price>123</price>
+    <year>123</year>
+  </book>
+  <book category="123" cover="fdsfs">
+    <title lang="fdhtj">123</title>
+    <author>sdfdf</author>
+    <price>dffd</price>
+    <year>fhfthj</year>
+  </book>
+</bookstore>

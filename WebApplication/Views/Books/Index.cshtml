@@ -1,0 +1,88 @@
+﻿@model IEnumerable<BusinessLogic.Model.Book>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Книжный магазин</h1>
+<div class="row">
+    @if (Model.Count() == 0)
+    {
+        <div class="col">
+            <a class="btn btn-primary" asp-action="LoadXml">Загрузить XML</a>
+        </div>
+    }
+    else
+    {
+        <div class="col">
+            <a class="btn btn-primary" asp-action="Create">Создать новую позицию</a>
+        </div>
+        <div class="col">
+            <a class="btn btn-primary" asp-action="DownLoadHTML">Загрузить HTML</a>
+        </div>
+        <div class="col">
+            <a class="btn btn-primary" asp-action="DownLoadXML">Скачать XML</a>
+        </div>
+    }
+</div>
+&nbsp;
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cover)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Language)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cover)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a> |
+                <a asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-info"></i></a> |
+                <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
